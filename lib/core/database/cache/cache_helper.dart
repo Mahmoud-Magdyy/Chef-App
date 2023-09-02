@@ -44,6 +44,33 @@ Future<bool>clearData({required String key})async{
   return sharedPreferences.clear();
 }
 
+// this fun to put data in local data base using key
+   Future<dynamic> put({
+    required String key,
+    required dynamic value,
+  }) async {
+    if (value is String) {
+      return await sharedPreferences.setString(key, value);
+    } else if (value is bool) {
+      return await sharedPreferences.setBool(key, value);
+    } else {
+      return await sharedPreferences.setInt(key, value);
+    }
+  }
+    final String _cachedCode = "cachedCode";
+
+   String getCachedLanguage() {
+    final code = sharedPreferences.getString(_cachedCode);
+    if (code != null) {
+      return code;
+    } else {
+      return 'ar';
+    }
+  }
+
+   Future<void> cacheLanguage(String code) async {
+    await sharedPreferences.setString(_cachedCode, code);
+  } 
 
 
 
