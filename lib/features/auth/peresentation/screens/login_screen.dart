@@ -1,4 +1,5 @@
 import 'package:chef_app/core/local/app_loacl.dart';
+import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_assets.dart';
 import 'package:chef_app/core/utils/app_colors.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
@@ -102,8 +103,11 @@ class LogInScreen extends StatelessWidget {
                           //forget password
                           Align(
                             alignment: Alignment.bottomLeft,
-                            child: Text(
-                              AppStrings.forgetPassword.tr(context),
+                            child: TextButton(
+                              onPressed: (){
+                                navigateReplacment(context: context, route: Routes.sendCode);
+                              },
+                              child: Text(AppStrings.forgetPassword.tr(context)),
                             ),
                           ),
                           SizedBox(

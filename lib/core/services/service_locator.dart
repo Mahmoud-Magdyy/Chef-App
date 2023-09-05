@@ -7,6 +7,8 @@ import 'package:chef_app/features/auth/peresentation/cubits/cubit/login_cubit.da
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../features/auth/peresentation/cubits/forget_password_cubit/cubit/forget_password_cubit.dart';
+
 final sl=GetIt.instance;
 void initServiceLocator(){
   //external
@@ -16,5 +18,6 @@ void initServiceLocator(){
   sl.registerLazySingleton<ApiConsumer>(() => DioConsumer(sl()));
   sl.registerLazySingleton(() => Dio());
   sl.registerLazySingleton(() => AuthRepository());
+  sl.registerLazySingleton(() => ForgetPasswordCubit(sl()));
   sl.registerLazySingleton(() => LoginCubit(sl()));
 }

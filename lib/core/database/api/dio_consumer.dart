@@ -115,6 +115,10 @@ class DioConsumer extends ApiConsumer {
           case 409: //cofficient
             // throw ServerException('badResponse');
             throw CofficientException(ErrorModel.fromJson(e.response!.data));
+            
+          case 504: // Bad request
+
+            throw BadResponseException(ErrorModel.fromJson(e.response!.data));
         }
 
       case DioExceptionType.cancel:

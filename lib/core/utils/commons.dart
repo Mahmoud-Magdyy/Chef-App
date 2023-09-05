@@ -14,6 +14,21 @@ void navigate({
     arguments: arg,
   );
 }
+void navigateReplacment({
+  required BuildContext context,
+  required String route,
+  dynamic arg,
+}) {
+  Navigator.pushReplacementNamed(
+    context,
+    route,
+    arguments: arg,
+  );
+}
+
+
+
+
 void showTwist({required String messege,required ToastStates state}){
   Fluttertoast.showToast(
         msg: messege,
