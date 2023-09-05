@@ -36,6 +36,10 @@ ThemeData getAppTheme() {
                   focusedBorder:  OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8)
                   ),
+                  //error border
+                  errorBorder:  OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8)
+                  ),
                   //hint
                   hintStyle: boldStyle(color: AppColors.grey,fontSize: 16),
                   // fillColor: AppColors.grey,

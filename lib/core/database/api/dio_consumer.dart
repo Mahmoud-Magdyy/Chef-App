@@ -1,6 +1,3 @@
-
-
-
 import 'package:dio/dio.dart';
 
 import '../../error/error_model.dart';
@@ -14,6 +11,7 @@ class DioConsumer extends ApiConsumer {
 
   DioConsumer(this.dio) {
     dio.options.baseUrl = EndPoint.baseUrl;
+    dio.options.contentType = Headers.jsonContentType;
     dio.interceptors.add(ApiInterceptors());
     dio.interceptors.add(LogInterceptor(
         request: true,
@@ -86,44 +84,44 @@ class DioConsumer extends ApiConsumer {
   handleDioException(e) {
     switch (e.type) {
       case DioExceptionType.connectionError:
-      throw ConnectionErrorException(ErrorModel.fromJson(e.response!.data));
+        throw ConnectionErrorException(ErrorModel.fromJson(e.response!.data));
       case DioExceptionType.badCertificate:
         throw BadCertificateException(ErrorModel.fromJson(e.response!.data));
       case DioExceptionType.connectionTimeout:
         throw ConnectionTimeoutException(ErrorModel.fromJson(e.response!.data));
 
       case DioExceptionType.receiveTimeout:
-              throw ReceiveTimeoutException(ErrorModel.fromJson(e.response!.data));
+        throw ReceiveTimeoutException(ErrorModel.fromJson(e.response!.data));
 
       case DioExceptionType.sendTimeout:
-          throw SendTimeoutException(ErrorModel.fromJson(e.response!.data));
+        throw SendTimeoutException(ErrorModel.fromJson(e.response!.data));
       // throw ServerException('connection Error');
 
       case DioExceptionType.badResponse:
         switch (e.response?.statusCode) {
           case 400: // Bad request
 
-          throw BadResponseException(ErrorModel.fromJson(e.response!.data));
+            throw BadResponseException(ErrorModel.fromJson(e.response!.data));
 
           case 401: //unauthorized
-          throw UnauthorizedException(ErrorModel.fromJson(e.response!.data));
+            throw UnauthorizedException(ErrorModel.fromJson(e.response!.data));
 
           case 403: //forbidden
-          throw ForbiddenException(ErrorModel.fromJson(e.response!.data));
+            throw ForbiddenException(ErrorModel.fromJson(e.response!.data));
 
           case 404: //not found
-          throw NotFoundException(ErrorModel.fromJson(e.response!.data));
+            throw NotFoundException(ErrorModel.fromJson(e.response!.data));
 
           case 409: //cofficient
             // throw ServerException('badResponse');
-          throw CofficientException(ErrorModel.fromJson(e.response!.data));
+            throw CofficientException(ErrorModel.fromJson(e.response!.data));
         }
 
       case DioExceptionType.cancel:
-                throw CancelException(ErrorModel.fromJson(e.response!.data));
+        throw CancelException(ErrorModel.fromJson(e.response!.data));
 
       case DioExceptionType.unknown:
-          throw UnknownException(ErrorModel.fromJson(e.response!.data));
+        throw UnknownException(ErrorModel.fromJson(e.response!.data));
       // throw ServerException('badResponse');
     }
   }
