@@ -53,6 +53,7 @@ class LogInScreen extends StatelessWidget {
                   listener: (context, state) {
                     if(state is LoginSuccessState){
                         showTwist(state:ToastStates.success,messege: AppStrings.loginSucessfully.tr(context) );
+                        navigateReplacment(context: context, route: Routes.home);
                     }
                     if(state is LoginErrorState){
                         showTwist(state:ToastStates.error,messege:  AppStrings.loginFailed.tr(context) );

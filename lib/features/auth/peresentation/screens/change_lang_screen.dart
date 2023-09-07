@@ -1,8 +1,10 @@
 import 'package:chef_app/core/bloc/cubit/global_cubit.dart';
 import 'package:chef_app/core/bloc/cubit/global_state.dart';
 import 'package:chef_app/core/local/app_loacl.dart';
+import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_assets.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
+import 'package:chef_app/core/utils/commons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -66,7 +68,10 @@ class ChangeLangScreen extends StatelessWidget {
                           CustomButton(
                               text: 'English',
                               onPressed: () {
-                                BlocProvider.of<GlobalCubit>(context).changeLang('en');
+                                BlocProvider.of<GlobalCubit>(context)
+                                    .changeLang('en');
+                                navigate(
+                                    context: context, route: Routes.login);
                               },
                               width: 140,
                               background: AppColors.black),
@@ -74,7 +79,10 @@ class ChangeLangScreen extends StatelessWidget {
                           CustomButton(
                               text: 'العربية',
                               onPressed: () {
-                                BlocProvider.of<GlobalCubit>(context).changeLang('ar');
+                                BlocProvider.of<GlobalCubit>(context)
+                                    .changeLang('ar');
+                                navigate(
+                                    context: context, route: Routes.login);
                               },
                               width: 140,
                               background: AppColors.black),
