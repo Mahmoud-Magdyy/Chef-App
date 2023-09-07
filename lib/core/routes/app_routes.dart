@@ -10,6 +10,8 @@ import 'package:chef_app/features/profile/peresentation/screens/setting.dart';
 import 'package:chef_app/features/profile/peresentation/screens/update_profile_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../features/home/screens/home_screen.dart';
+
 class Routes {
   static const String initialRoute = '/';
   static const String changeLang = '/changeLang';
@@ -23,13 +25,14 @@ class Routes {
   static const String updateProfile = '/updateProfile';
   static const String setting = '/setting';
   static const String changePassword = '/changePassword';
+  static const String home = '/home';
 }
 
 class AppRoutes {
   static Route? generateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (_) => const LogInScreen());
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       case Routes.changeLang:
         return MaterialPageRoute(builder: (_) => const ChangeLangScreen());
       case Routes.login:
@@ -50,6 +53,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const SettingsScreen());
       case Routes.changePassword:
         return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
+      case Routes.home:
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => const Scaffold(

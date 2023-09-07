@@ -18,7 +18,7 @@
     "oldPassword": "كلمة المرور القديمة",
     "code": "الكود",
     "description": "اكتب بعض الوصف",
-    "profile": "الملف الشخصي",
+    
     "confirm": "تأكيد",
     "editProfile": "تعديل الملف الشخصي",
     "loginSucessfully": "تم تسجيل الدخول بنجاح",
@@ -63,5 +63,8 @@
     "camera": "الكامير",
     "gallery": "المعرض",
     "dontHaveAnAccount": "لا يوجد لديك حساب",
-    "signUpp": "انشاء حساب"
+    "signUpp": "انشاء حساب",
+    
+    "menu": "المنيو",
+    "profile": "الملف الشخصي"
 }
