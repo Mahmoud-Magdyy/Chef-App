@@ -14,7 +14,7 @@ class ProfileRepository {
         EndPoint.getChefDataEndPoints(
             sl<CacheHelper>().getData(key: Apikeys.id)),
       );
-      return Right(GetDataChefModel.fromJson(response['chef']));
+      return Right(GetDataChefModel.fromJson(response[Apikeys.chef]));
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
     }

@@ -51,6 +51,7 @@ class Apikeys {
   static const String profilePic = 'profilePic';
   static const String oldPass = 'oldPass';
   static const String newPass = 'newPass';
+  static const String chef = 'chef';
 
   
 

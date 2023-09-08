@@ -1,5 +1,4 @@
 import 'package:chef_app/core/local/app_loacl.dart';
-import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
 import 'package:chef_app/core/widgets/custom_text_field.dart';
 import 'package:chef_app/features/profile/peresentation/cubit/update_prof_cubit/update_profile_state.dart';
@@ -32,7 +31,8 @@ class UpdateProfileScreen extends StatelessWidget {
           listener: (context, state) {
             if(state is UpdateChefSuccessState){
 
-              navigate(context: context, route: Routes.updateProfile);
+              // navigateReplacment(context: context, route: Routes.profileHome);
+              Navigator.pop(context);
               BlocProvider.of<ProfileCubit>(context).getChefData();
             }
             
@@ -162,3 +162,4 @@ class UpdateProfileScreen extends StatelessWidget {
     );
   }
 }
+//formkey

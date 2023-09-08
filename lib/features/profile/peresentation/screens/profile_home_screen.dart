@@ -36,9 +36,9 @@ class ProfileHomeScreen extends StatelessWidget {
                           Stack(
                             children: [
                               //image
-                              const CircleAvatar(
+                               const CircleAvatar(
                                 radius: 75,
-                                backgroundImage: AssetImage(AppAssets.appLogo),
+                                backgroundImage:AssetImage(AppAssets.profile),
                                 // child: CustomImages(
                                 //   imgPath: AppAssets.profile,
                                 //   height: 160,
