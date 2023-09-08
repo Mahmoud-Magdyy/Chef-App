@@ -53,11 +53,11 @@ class DioConsumer extends ApiConsumer {
 
   @override
   Future patch(String path,
-      {Object? data, Map<String, dynamic>? queryParameters}) async {
+      {dynamic data, Map<String, dynamic>? queryParameters,bool isFormData=false,}) async {
     try {
       var res = await dio.patch(
         path,
-        data: data,
+        data:isFormData?FormData.fromMap(data): data,
         queryParameters: queryParameters,
       );
       return res.data;
@@ -67,12 +67,16 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future post(String path,
-      {Object? data, Map<String, dynamic>? queryParameters}) async {
+  Future post(
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    bool isFormData=false,
+  }) async {
     try {
       var res = await dio.post(
         path,
-        data: data,
+        data:isFormData?FormData.fromMap(data): data,
         queryParameters: queryParameters,
       );
       return res.data;
@@ -115,17 +119,19 @@ class DioConsumer extends ApiConsumer {
           case 409: //cofficient
             // throw ServerException('badResponse');
             throw CofficientException(ErrorModel.fromJson(e.response!.data));
-            
+
           case 504: // Bad request
 
             throw BadResponseException(ErrorModel.fromJson(e.response!.data));
         }
 
       case DioExceptionType.cancel:
-        throw CancelException(ErrorModel.fromJson(e.response!.data));
+        throw CancelException(
+            ErrorModel(errorMessage: e.toString(), status: 500));
 
       case DioExceptionType.unknown:
-        throw UnknownException(ErrorModel.fromJson(e.response!.data));
+        throw UnknownException(
+            ErrorModel(errorMessage: e.toString(), status: 500));
       // throw ServerException('badResponse');
     }
   }

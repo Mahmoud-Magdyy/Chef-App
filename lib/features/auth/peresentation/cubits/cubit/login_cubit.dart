@@ -4,6 +4,7 @@ import 'package:chef_app/features/auth/data/models/login_model.dart';
 import 'package:chef_app/features/auth/data/reposatiry/auth_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../../../../../core/services/service_locator.dart';
 import 'login_state.dart';
@@ -33,6 +34,9 @@ class LoginCubit extends Cubit<LoginState> {
     );
     result.fold((l) => emit(LoginErrorState(l)), (r) async {
       loginModel = r;
+      Map<String, dynamic> decodedToken = JwtDecoder.decode(r.token);
+      await sl<CacheHelper>()
+          .saveData(key: Apikeys.id, value: decodedToken[Apikeys.id]);
       await sl<CacheHelper>().saveData(
         key: Apikeys.token,
         value: r.token,
@@ -40,20 +44,4 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginSuccessState());
     });
   }
-
-  // void login() async {
-  //   try {
-  //     emit(LoginLoadingState());
-  //     final result = await Dio().post(
-  //       EndPoint.baseUrl + EndPoint.chefSignIn,
-  //       data: {
-  //         "email": emailController.text,
-  //         "password": passwordController.text,
-  //       },
-  //     ).then((value) => print(value));
-  //   } on ServerException catch (e) {
-  //     print(e.errorModel.errorMessage);
-  //     emit(LoginErrorState(e.errorModel.errorMessage));
-  //   }
-  // }
 }

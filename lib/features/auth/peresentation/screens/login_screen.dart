@@ -51,12 +51,16 @@ class LogInScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(24),
                 child: BlocConsumer<LoginCubit, LoginState>(
                   listener: (context, state) {
-                    if(state is LoginSuccessState){
-                        showTwist(state:ToastStates.success,messege: AppStrings.loginSucessfully.tr(context) );
-                        navigateReplacment(context: context, route: Routes.home);
+                    if (state is LoginSuccessState) {
+                      showTwist(
+                          state: ToastStates.success,
+                          messege: AppStrings.loginSucessfully.tr(context));
+                      navigateReplacment(context: context, route: Routes.home);
                     }
-                    if(state is LoginErrorState){
-                        showTwist(state:ToastStates.error,messege:  AppStrings.loginFailed.tr(context) );
+                    if (state is LoginErrorState) {
+                      showTwist(
+                          state: ToastStates.error,
+                          messege: AppStrings.loginFailed.tr(context));
                     }
                   },
                   builder: (context, state) {
@@ -66,14 +70,16 @@ class LogInScreen extends StatelessWidget {
                         children: [
                           //email
                           CustomTextFormField(
-                            controller: BlocProvider.of<LoginCubit>(context).emailController,
+                            controller: BlocProvider.of<LoginCubit>(context)
+                                .emailController,
                             hint: AppStrings.email.tr(context),
                             validate: (data) {
-                              if ( data!.isEmpty || !data.contains('@gmail.com')) {
+                              if (data!.isEmpty ||
+                                  !data.contains('@gmail.com')) {
                                 return AppStrings.pleaseEnterValidEmail
                                     .tr(context);
                               }
-                    
+
                               return null;
                             },
                           ),
@@ -82,19 +88,24 @@ class LogInScreen extends StatelessWidget {
                           ),
                           //password
                           CustomTextFormField(
-                            controller: BlocProvider.of<LoginCubit>(context).passwordController,
+                            controller: BlocProvider.of<LoginCubit>(context)
+                                .passwordController,
                             hint: AppStrings.password.tr(context),
-                            passwordIsVisable: BlocProvider.of<LoginCubit>(context).isLoginPasswordsShowing,
-                            icon:BlocProvider.of<LoginCubit>(context).suffixIcon,
-                            suffixIconOnPressed: (){
-                              BlocProvider.of<LoginCubit>(context).changeLoginPasswordSuffixIcon();
+                            passwordIsVisable:
+                                BlocProvider.of<LoginCubit>(context)
+                                    .isLoginPasswordsShowing,
+                            icon:
+                                BlocProvider.of<LoginCubit>(context).suffixIcon,
+                            suffixIconOnPressed: () {
+                              BlocProvider.of<LoginCubit>(context)
+                                  .changeLoginPasswordSuffixIcon();
                             },
                             validate: (data) {
                               if (data!.length < 6 || data.isEmpty) {
                                 return AppStrings.pleaseEnterValidPassword
                                     .tr(context);
                               }
-                    
+
                               return null;
                             },
                           ),
@@ -105,25 +116,33 @@ class LogInScreen extends StatelessWidget {
                           Align(
                             alignment: Alignment.bottomLeft,
                             child: TextButton(
-                              onPressed: (){
-                                navigateReplacment(context: context, route: Routes.sendCode);
+                              onPressed: () {
+                                navigateReplacment(
+                                    context: context, route: Routes.sendCode);
                               },
-                              child: Text(AppStrings.forgetPassword.tr(context)),
+                              child:
+                                  Text(AppStrings.forgetPassword.tr(context)),
                             ),
                           ),
                           SizedBox(
                             height: 64.h,
                           ),
                           //sign in button
-                          state is LoginLoadingState?const CustomLoadingIndicator(): CustomButton(
-                            onPressed: () {
-                              if(BlocProvider.of<LoginCubit>(context).loginKey.currentState!.validate()){
-                                BlocProvider.of<LoginCubit>(context).login();
-                              }
-                              //  BlocProvider.of<LoginCubit>(context).login();
-                            },
-                            text: AppStrings.signIn.tr(context),
-                          ),
+                          state is LoginLoadingState
+                              ? const CustomLoadingIndicator()
+                              : CustomButton(
+                                  onPressed: () {
+                                    if (BlocProvider.of<LoginCubit>(context)
+                                        .loginKey
+                                        .currentState!
+                                        .validate()) {
+                                      BlocProvider.of<LoginCubit>(context)
+                                          .login();
+                                    }
+                                    //  BlocProvider.of<LoginCubit>(context).login();
+                                  },
+                                  text: AppStrings.signIn.tr(context),
+                                ),
                           SizedBox(
                             height: 30.h,
                           ),

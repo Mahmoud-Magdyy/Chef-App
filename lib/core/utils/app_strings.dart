@@ -57,6 +57,8 @@ class AppStrings {
   static const String menu = 'menu';
   static const String profile = 'profile';
   static const String delete = 'delete';
+  static const String category= 'category';
+  static const String noMeals= 'noMeals';
   static const String pleaseEnterValidMealName = 'pleaseEnterValidMealName';
   static const String pleaseEnterValidMealDesc = 'pleaseEnterValidMealDesc';
   static const String pleaseEnterValidMealPrice = 'pleaseEnterValidMealPrice';
@@ -73,4 +75,8 @@ class AppStrings {
   static const String changePassword = 'changePassword';
   static const String ok = 'ok';
   static const String cancel = 'cancel';
+  static const String brandName = 'brandName';
+  static const String minimumCharge = 'minimumCharge';
+  
+  static const String location = 'location';
 }

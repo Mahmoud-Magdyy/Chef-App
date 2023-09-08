@@ -42,5 +42,8 @@ ThemeData getAppTheme() {
         ),
       ),
     ),
+      buttonTheme: const ButtonThemeData(
+        buttonColor: Colors.red
+      )
   );
 }

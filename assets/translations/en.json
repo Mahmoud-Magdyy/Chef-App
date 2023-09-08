@@ -66,6 +66,11 @@
     "signUpp": "sign Up",
     "menu": "Menu",
     "profile": "Profile",
-    "delete": "Delete"
+    "delete": "Delete",
+    "category": "Category",
+    "noMeals": "No Meals",
+    "location": "Location",
+    "brandName": "Brand Name",
+    "minimumCharge": "Minimum Charge"
     
 }
