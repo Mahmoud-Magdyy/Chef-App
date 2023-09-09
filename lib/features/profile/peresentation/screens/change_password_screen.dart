@@ -21,8 +21,11 @@ class ChangePasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        
         leading:
-            IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back)),
+            IconButton(onPressed: () {
+              navigateReplacment(context: context, route: Routes.profileHome);
+            }, icon: const Icon(Icons.arrow_back)),
         title: Text(AppStrings.changePassword.tr(context)),
       ),
       body: Padding(
@@ -34,7 +37,7 @@ class ChangePasswordScreen extends StatelessWidget {
                 // show message
                 showTwist(state: ToastStates.success, messege: state.message);
                 // navigate to login screen
-                navigateReplacment(context: context, route: Routes.profileHome);
+                navigateReplacment(context: context, route: Routes.login);
               }
             },
             builder: (context, state) {

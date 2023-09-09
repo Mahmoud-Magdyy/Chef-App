@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/app_colors.dart';
+import '../../../../core/widgets/custom_alert_dialog.dart';
 import '../../../../core/widgets/custom_loading_indecator.dart';
 import '../../../../core/widgets/custom_text_icon_button.dart';
 import '../cubit/get_chef_data_cubit/profile_state.dart';
@@ -21,7 +22,20 @@ class ProfileHomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: BlocConsumer<ProfileCubit, ProfileState>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            
+            if (state is LogoutChefSuccessState) {
+              showTwist(
+                  state: ToastStates.success,
+                  messege: AppStrings.logoutSucessfully.tr(context));
+              navigateReplacment(context: context, route: Routes.login);
+            }
+            if (state is LogoutChefLoadingState) {
+              showTwist(
+                  state: ToastStates.error,
+                  messege: AppStrings.logout.tr(context));
+            }
+          },
           builder: (context, state) {
             final profileCubit = BlocProvider.of<ProfileCubit>(context);
             return state is GetChefDataLoadingState
@@ -32,13 +46,12 @@ class ProfileHomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Center(
-                          child: 
-                          Stack(
+                          child: Stack(
                             children: [
                               //image
-                               const CircleAvatar(
+                              const CircleAvatar(
                                 radius: 75,
-                                backgroundImage:AssetImage(AppAssets.profile),
+                                backgroundImage: AssetImage(AppAssets.profile),
                                 // child: CustomImages(
                                 //   imgPath: AppAssets.profile,
                                 //   height: 160,
@@ -82,7 +95,8 @@ class ProfileHomeScreen extends StatelessWidget {
                         //!edit profile
                         CustomTextButtonIcon(
                           onPressed: () {
-                            navigate(context: context, route: Routes.updateProfile);
+                            navigate(
+                                context: context, route: Routes.updateProfile);
                           },
                           icon: const Icon(Icons.person),
                           label: Text(AppStrings.editProfile.tr(context)),
@@ -95,7 +109,8 @@ class ProfileHomeScreen extends StatelessWidget {
                         //!password
                         CustomTextButtonIcon(
                           onPressed: () {
-                            navigate(context: context, route: Routes.changePassword);
+                            navigate(
+                                context: context, route: Routes.changePassword);
                           },
                           icon: const Icon(Icons.lock),
                           label: Text(AppStrings.password.tr(context)),
@@ -106,13 +121,31 @@ class ProfileHomeScreen extends StatelessWidget {
                         // ),
                         //!Settings
                         CustomTextButtonIcon(
-                          onPressed: () {},
+                          onPressed: () {
+                            navigate(context: context, route: Routes.setting);
+                            // Navigator.pop(context);
+                          },
                           icon: const Icon(Icons.settings),
                           label: Text(AppStrings.settings.tr(context)),
                         ),
                         //!Logout
-                        CustomTextButtonIcon(
-                          onPressed: () {},
+                        state is LogoutChefLoadingState?const CustomLoadingIndicator(): CustomTextButtonIcon(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return CustomAlertDialog(
+                                    message: AppStrings.logout.tr(context),
+                                    confirmAction: () {
+                                      BlocProvider.of<ProfileCubit>(context)
+                                          .logoutChef();
+
+                                      // BlocProvider.of<MenuCubit>(context).deleteDish(model.id);
+                                      // Navigator.pop(context);
+                                    },
+                                  );
+                                });
+                          },
                           icon: const Icon(Icons.logout),
                           label: Text(AppStrings.logout.tr(context)),
                         ),

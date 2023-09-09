@@ -79,4 +79,5 @@ class AppStrings {
   static const String minimumCharge = 'minimumCharge';
   
   static const String location = 'location';
+  static const String language = 'language';
 }

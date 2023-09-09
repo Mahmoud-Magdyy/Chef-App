@@ -2,10 +2,11 @@ import 'package:chef_app/features/profile/peresentation/cubit/get_chef_data_cubi
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/get_data_profile_model.dart';
+import '../../../data/reposatiry/logout_repo.dart';
 import '../../../data/reposatiry/profile_repo.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  ProfileCubit(this.getProfileRepo) : super(ProfileInitial());
+  ProfileCubit(this.getProfileRepo, this.logoutRepo) : super(ProfileInitial());
   final ProfileRepository getProfileRepo;
 
   GetDataChefModel? getChefModel;
@@ -18,4 +19,14 @@ class ProfileCubit extends Cubit<ProfileState> {
           emit(GetChefDataSuccessState());
         });
   }
+  //!logout
+  final LogoutRepository logoutRepo;
+
+  void logoutChef() async {
+    emit(LogoutChefLoadingState());
+    final result = await logoutRepo.logoutChef();
+    result.fold((l) => emit(LogoutChefErrorState()),
+        (r) => emit(LogoutChefSuccessState()));
+  }
+
 }

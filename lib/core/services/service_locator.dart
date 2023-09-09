@@ -6,6 +6,7 @@ import 'package:chef_app/features/auth/data/reposatiry/auth_repository.dart';
 import 'package:chef_app/features/auth/peresentation/cubits/cubit/login_cubit.dart';
 import 'package:chef_app/features/home/home_cubit/home_cubit.dart';
 import 'package:chef_app/features/menu/peresentation/cubit/menu_cubit.dart';
+import 'package:chef_app/features/profile/data/reposatiry/logout_repo.dart';
 import 'package:chef_app/features/profile/peresentation/cubit/get_chef_data_cubit/profile_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -34,8 +35,9 @@ void initServiceLocator(){
   sl.registerLazySingleton(() => ChangePasswordCubit(sl()));
   sl.registerLazySingleton(() => ChangePasswordRepository());
   sl.registerLazySingleton(() => UpdateProfileCubit(sl()));
-  sl.registerLazySingleton(() => ProfileCubit(sl()));
+  sl.registerLazySingleton(() => ProfileCubit(sl(),sl()));
   sl.registerLazySingleton(() => ProfileRepository());
+  sl.registerLazySingleton(() => LogoutRepository());
   sl.registerLazySingleton(() => UpdateProfileRepository());
 
   sl.registerLazySingleton(() => MenuCubit(sl()));

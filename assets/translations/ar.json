@@ -71,5 +71,6 @@
     "category": "فئة",
     "location": "العنوان",
     "brandName": "اسم البراند",
-    "minimumCharge": "الحد الأدنى للطلب"
+    "minimumCharge": "الحد الأدنى للطلب",
+"language": "العربية"
 }
