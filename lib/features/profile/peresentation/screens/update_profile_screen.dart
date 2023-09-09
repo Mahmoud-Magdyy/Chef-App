@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../core/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/commons.dart';
 import '../../../../core/widgets/custom_button.dart';
@@ -23,6 +24,11 @@ class UpdateProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading:
+            IconButton(onPressed: () {
+              navigateReplacment(context: context, route: Routes.profileHome);
+              Navigator.pop(context);
+            }, icon: const Icon(Icons.arrow_back)),
         title: Text(AppStrings.editProfile.tr(context)),
       ),
       body: Padding(
@@ -150,7 +156,7 @@ class UpdateProfileScreen extends StatelessWidget {
                                       .updateChef();
                                 }
                               },
-                              text: AppStrings.sendResetLink.tr(context),
+                              text: AppStrings.updateProfile.tr(context),
                             ),
                   ],
                 ),

@@ -38,6 +38,7 @@ class AppStrings {
   static const String passwordChangedSucessfully = 'PasswordChangedSucessfully';
   static const String pleaseEnterValidNumber = 'pleaseEnterValidNumber';
   static const String signUpp = 'signUpp';
+  static const String updateProfile = 'updateProfile';
   
 
   //! home-order-menu

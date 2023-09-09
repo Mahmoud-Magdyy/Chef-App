@@ -25,6 +25,7 @@ class ChangePasswordScreen extends StatelessWidget {
         leading:
             IconButton(onPressed: () {
               navigateReplacment(context: context, route: Routes.profileHome);
+              Navigator.pop(context);
             }, icon: const Icon(Icons.arrow_back)),
         title: Text(AppStrings.changePassword.tr(context)),
       ),
@@ -172,7 +173,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                     .changePassword();
                               }
                             },
-                            text: AppStrings.createYourNewPassword.tr(context),
+                            text: AppStrings.changePassword.tr(context),
                           ),
                   ],
                 ),
